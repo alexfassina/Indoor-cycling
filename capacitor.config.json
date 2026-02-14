@@ -1,7 +1,7 @@
 {
   "appId": "com.indoorcycling.app",
   "appName": "Indoor Cycling",
-  "webDir": "dist",
+  "webDir": ".",
   "bundledWebRuntime": false,
   "android": {
     "allowMixedContent": true

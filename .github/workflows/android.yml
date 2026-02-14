@@ -20,13 +20,7 @@ jobs:
           node-version: '20'
           
       - name: Install dependencies
-        run: npm install -g @capacitor/cli @capacitor/android
-        
-      - name: Initialize Capacitor
-        run: npx cap init "Indoor Cycling" com.indoorcycling.app --web-dir=.
-        
-      - name: Add Android platform
-        run: npx cap add android
+        run: npm ci
         
       - name: Build Android APK (Debug)
         run: |
