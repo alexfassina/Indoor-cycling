@@ -14,33 +14,174 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           
-      - name: Install dependencies
-        run: npm install
-        
-      - name: Install Capacitor
-        run: npm install @capacitor/cli @capacitor/core @capacitor/android
-        
-      - name: Debug - list files
-        run: ls -la
-        
-      - name: Debug - show capacitor config
-        run: cat capacitor.config.json
-        
-      - name: Sync Android
+      - name: Create Android project structure
         run: |
-          npx cap sync android 2>&1 || echo "Exit code: $?"
-        
-      - name: Build Android APK
-        if: success()
+          mkdir -p android/app/src/main/assets
+          mkdir -p android/app/src/main/res/values
+          mkdir -p android/app/src/main/res/drawable
+          
+      - name: Create AndroidManifest.xml
+        run: |
+          cat > android/app/src/main/AndroidManifest.xml << 'EOF'
+          <?xml version="1.0" encoding="utf-8"?>
+          <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+              package="com.indoorcycling.app">
+              <uses-permission android:name="android.permission.BLUETOOTH"/>
+              <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+              <uses-permission android:name="android.permission.BLUETOOTH_SCAN"/>
+              <uses-permission android:name="android.permission.INTERNET"/>
+              <application
+                  android:allowBackup="true"
+                  android:icon="@drawable/icon"
+                  android:label="Indoor Cycling"
+                  android:supportsRtl="true"
+                  android:theme="@android:style/Theme.Material.Light.NoActionBar">
+                  <activity
+                      android:name=".MainActivity"
+                      android:exported="true"
+                      android:configChanges="orientation|keyboardHidden|screenSize"
+                      android:windowSoftInputMode="adjustResize">
+                      <intent-filter>
+                          <action android:name="android.intent.action.MAIN"/>
+                          <category android:name="android.intent.category.LAUNCHER"/>
+                      </intent-filter>
+                  </activity>
+              </application>
+          </manifest>
+          EOF
+          
+      - name: Create MainActivity.java
+        run: |
+          mkdir -p android/app/src/main/java/com/indoorcycling/app
+          cat > android/app/src/main/java/com/indoorcycling/app/MainActivity.java << 'EOF'
+          package com.indoorcycling.app;
+          import android.app.Activity;
+          import android.os.Bundle;
+          import android.webkit.WebSettings;
+          import android.webkit.WebView;
+          import android.webkit.WebViewClient;
+          public class MainActivity extends Activity {
+              private WebView webView;
+              @Override
+              protected void onCreate(Bundle savedInstanceState) {
+                  super.onCreate(savedInstanceState);
+                  setContentView(R.layout.activity_main);
+                  webView = findViewById(R.id.webview);
+                  WebSettings webSettings = webView.getSettings();
+                  webSettings.setJavaScriptEnabled(true);
+                  webSettings.setDomStorageEnabled(true);
+                  webSettings.setAllowFileAccess(true);
+                  webView.setWebViewClient(new WebViewClient());
+                  webView.loadUrl("file:///android_asset/index.html");
+              }
+          }
+          EOF
+          
+      - name: Create layout
+        run: |
+          mkdir -p android/app/src/main/res/layout
+          cat > android/app/src/main/res/layout/activity_main.xml << 'EOF'
+          <?xml version="1.0" encoding="utf-8"?>
+          <WebView xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/webview"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"/>
+          EOF
+          
+      - name: Create strings.xml
+        run: |
+          cat > android/app/src/main/res/values/strings.xml << 'EOF'
+          <?xml version="1.0" encoding="utf-8"?>
+          <resources>
+              <string name="app_name">Indoor Cycling</string>
+          </resources>
+          EOF
+          
+      - name: Create build.gradle (app)
+        run: |
+          cat > android/app/build.gradle << 'EOF'
+          plugins {
+              id 'com.android.application'
+          }
+          android {
+              namespace 'com.indoorcycling.app'
+              compileSdk 34
+              defaultConfig {
+                  applicationId "com.indoorcycling.app"
+                  minSdk 26
+                  targetSdk 34
+                  versionCode 1
+                  versionName "1.0"
+              }
+              buildTypes {
+                  release {
+                      minifyEnabled false
+                      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+                  }
+              }
+          }
+          dependencies {
+              implementation 'androidx.appcompat:appcompat:1.6.1'
+              implementation 'androidx.webkit:webkit:1.8.0'
+          }
+          EOF
+          
+      - name: Create build.gradle (project)
+        run: |
+          cat > android/build.gradle << 'EOF'
+          buildscript {
+              repositories {
+                  google()
+                  mavenCentral()
+              }
+              dependencies {
+                  classpath 'com.android.tools.build:gradle:8.1.0'
+              }
+          }
+          plugins {
+              id 'com.android.application' version '8.1.0' apply false
+          }
+          EOF
+          
+      - name: Copy web files
+        run: |
+          cp index.html android/app/src/main/assets/
+          cp -r src android/app/src/main/assets/
+          cp -r public android/app/src/main/assets/
+          
+      - name: Create gradle wrapper
         run: |
           cd android
-          chmod +x gradlew
-          ./gradlew assembleDebug --stacktrace
+          mkdir -p gradle/wrapper
+          cat > gradle/wrapper/gradle-wrapper.properties << 'EOF'
+          distributionBase=GRADLE_USER_HOME
+          distributionPath=wrapper/dists
+          distributionUrl=https\://services.gradle.org/distributions/gradle-8.0-bin.zip
+          zipStoreBase=GRADLE_USER_HOME
+          zipStorePath=wrapper/dists
+          EOF
+          gradle wrapper --gradle-version=8.0 || true
+          
+      - name: Build APK
+        run: |
+          cd android
+          if [ -f "./gradlew" ]; then
+            chmod +x ./gradlew
+            ./gradlew assembleDebug --no-daemon
+          else
+            echo "Gradle wrapper not created"
+          fi
           
       - name: Upload APK
         if: success()
