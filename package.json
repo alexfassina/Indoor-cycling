@@ -2,14 +2,8 @@
   "name": "indoor-cycling",
   "version": "1.0.0",
   "description": "Indoor cycling app with BLE power and cadence sensor",
-  "type": "module",
+  "main": "index.html",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {},
-  "devDependencies": {
-    "vite": "^5.0.0"
+    "test": "echo \"No tests yet\" && exit 0"
   }
 }
