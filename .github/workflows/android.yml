@@ -9,17 +9,30 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    
     steps:
-      - uses: actions/checkout@v4
-      
-      - name: Build APK with Capacitor
-        uses: nickreese/capacitor@master
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          appId: com.indoorcycling.app
-          appName: IndoorCycling
-          directory: .
-          platform: android
-          keyHash: ''
+          node-version: '20'
+          
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Install Capacitor
+        run: npm install @capacitor/cli @capacitor/core @capacitor/android
+        
+      - name: Sync Android
+        run: npx cap sync android
+        
+      - name: Build Android APK
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug
           
       - name: Upload APK
         uses: actions/upload-artifact@v4
