@@ -20,16 +20,12 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          
       - name: Create Android project structure
         run: |
           mkdir -p android/app/src/main/assets
           mkdir -p android/app/src/main/res/values
-          mkdir -p android/app/src/main/res/drawable
+          mkdir -p android/app/src/main/res/layout
+          mkdir -p android/app/src/main/java/com/indoorcycling/app
           
       - name: Create AndroidManifest.xml
         run: |
@@ -43,7 +39,6 @@ jobs:
               <uses-permission android:name="android.permission.INTERNET"/>
               <application
                   android:allowBackup="true"
-                  android:icon="@drawable/icon"
                   android:label="Indoor Cycling"
                   android:supportsRtl="true"
                   android:theme="@android:style/Theme.Material.Light.NoActionBar">
@@ -63,7 +58,6 @@ jobs:
           
       - name: Create MainActivity.java
         run: |
-          mkdir -p android/app/src/main/java/com/indoorcycling/app
           cat > android/app/src/main/java/com/indoorcycling/app/MainActivity.java << 'EOF'
           package com.indoorcycling.app;
           import android.app.Activity;
@@ -90,7 +84,6 @@ jobs:
           
       - name: Create layout
         run: |
-          mkdir -p android/app/src/main/res/layout
           cat > android/app/src/main/res/layout/activity_main.xml << 'EOF'
           <?xml version="1.0" encoding="utf-8"?>
           <WebView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -127,7 +120,6 @@ jobs:
               buildTypes {
                   release {
                       minifyEnabled false
-                      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
                   }
               }
           }
@@ -137,17 +129,31 @@ jobs:
           }
           EOF
           
-      - name: Create build.gradle (project)
+      - name: Create settings.gradle
         run: |
-          cat > android/build.gradle << 'EOF'
-          buildscript {
+          cat > android/settings.gradle << 'EOF'
+          pluginManagement {
+              repositories {
+                  google()
+                  mavenCentral()
+                  gradlePluginPortal()
+              }
+          }
+          dependencyResolutionManagement {
+              repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
               repositories {
                   google()
                   mavenCentral()
               }
-              dependencies {
-                  classpath 'com.android.tools.build:gradle:8.1.0'
-              }
+          }
+          rootProject.name = "IndoorCycling"
+          include ':app'
+          EOF
+          
+      - name: Create build.gradle (project)
+        run: |
+          cat > android/build.gradle << 'EOF'
+          buildscript {
           }
           plugins {
               id 'com.android.application' version '8.1.0' apply false
@@ -157,31 +163,25 @@ jobs:
       - name: Copy web files
         run: |
           cp index.html android/app/src/main/assets/
-          cp -r src android/app/src/main/assets/
-          cp -r public android/app/src/main/assets/
+          cp -r src android/app/src/main/assets/ || true
+          cp -r public android/app/src/main/assets/ || true
+          ls -la android/app/src/main/assets/
           
-      - name: Create gradle wrapper
+      - name: Setup Gradle
         run: |
           cd android
           mkdir -p gradle/wrapper
-          cat > gradle/wrapper/gradle-wrapper.properties << 'EOF'
-          distributionBase=GRADLE_USER_HOME
-          distributionPath=wrapper/dists
-          distributionUrl=https\://services.gradle.org/distributions/gradle-8.0-bin.zip
-          zipStoreBase=GRADLE_USER_HOME
-          zipStorePath=wrapper/dists
-          EOF
-          gradle wrapper --gradle-version=8.0 || true
+          gradle wrapper --gradle-version=8.0
           
       - name: Build APK
         run: |
           cd android
-          if [ -f "./gradlew" ]; then
-            chmod +x ./gradlew
-            ./gradlew assembleDebug --no-daemon
-          else
-            echo "Gradle wrapper not created"
-          fi
+          chmod +x ./gradlew
+          ./gradlew assembleDebug --no-daemon --stacktrace 2>&1 | tail -50
+          
+      - name: Check APK exists
+        run: |
+          ls -la android/app/build/outputs/apk/debug/ || echo "APK not found"
           
       - name: Upload APK
         if: success()
@@ -189,12 +189,3 @@ jobs:
         with:
           name: indoor-cycling-debug.apk
           path: android/app/build/outputs/apk/debug/app-debug.apk
-          
-      - name: Create Release
-        if: github.ref == 'refs/heads/main' && success()
-        uses: softprops/action-gh-release@v1
-        with:
-          files: android/app/build/outputs/apk/debug/app-debug.apk
-          generate_release_notes: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
