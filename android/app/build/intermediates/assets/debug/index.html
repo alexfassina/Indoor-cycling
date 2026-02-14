@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#1a1a2e">
+  <meta name="description" content="Indoor cycling app with power and cadence">
+  <title>Indoor Cycling</title>
+  <link rel="manifest" href="/manifest.json">
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>🚴 Indoor Cycling</h1>
+    </header>
+
+    <main>
+      <!-- Connection Status -->
+      <section id="connection" class="card">
+        <div class="status-indicator" id="status-dot"></div>
+        <p id="status-text">Searching for sensor...</p>
+        <button id="connect-btn">Connect Sensor</button>
+      </section>
+
+      <!-- Real-time Metrics -->
+      <section id="metrics" class="metrics-grid">
+        <div class="metric-card power">
+          <span class="metric-label">Power</span>
+          <span class="metric-value" id="power-value">--</span>
+          <span class="metric-unit">W</span>
+        </div>
+        <div class="metric-card cadence">
+          <span class="metric-label">Cadence</span>
+          <span class="metric-value" id="cadence-value">--</span>
+          <span class="metric-unit">RPM</span>
+        </div>
+      </section>
+
+      <!-- Session Controls -->
+      <section id="session" class="card">
+        <div class="session-stats">
+          <div class="stat">
+            <span class="stat-label">Duration</span>
+            <span class="stat-value" id="duration">00:00:00</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Avg Power</span>
+            <span class="stat-value" id="avg-power">-- W</span>
+          </div>
+        </div>
+        <div class="session-buttons">
+          <button id="start-btn" class="primary-btn">Start Session</button>
+          <button id="stop-btn" class="secondary-btn" disabled>Stop</button>
+        </div>
+      </section>
+
+      <!-- Session History -->
+      <section id="history" class="card">
+        <h2>Recent Sessions</h2>
+        <ul id="session-list"></ul>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:2:1-27:12
+INJECTED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:2:1-27:12
+INJECTED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:2:1-27:12
+INJECTED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:2:1-27:12
+INJECTED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:2:1-27:12
+INJECTED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:2:1-27:12
+INJECTED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:2:1-27:12
+	package
+		ADDED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:3:5-36
+		INJECTED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml
+		INJECTED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml
+		ADDED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:2:1-27:12
+		INJECTED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml
+		ADDED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:2:1-27:12
+		INJECTED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:2:11-69
+uses-permission#android.permission.BLUETOOTH
+ADDED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:5:5-67
+	android:name
+		ADDED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:5:22-65
+uses-permission#android.permission.BLUETOOTH_ADMIN
+ADDED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:6:5-73
+	android:name
+		ADDED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:6:22-71
+uses-permission#android.permission.BLUETOOTH_SCAN
+ADDED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:7:5-72
+	android:name
+		ADDED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:7:22-70
+uses-permission#android.permission.BLUETOOTH_CONNECT
+ADDED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:8:5-75
+	android:name
+		ADDED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:8:22-73
+uses-permission#android.permission.INTERNET
+ADDED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:9:5-66
+	android:name
+		ADDED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:9:22-64
+application
+ADDED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:11:5-26:19
+	android:supportsRtl
+		ADDED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:14:9-35
+	android:label
+		ADDED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:13:9-39
+	android:allowBackup
+		ADDED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:12:9-35
+	android:theme
+		ADDED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:15:9-72
+activity#com.indoorcycling.app.MainActivity
+ADDED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:16:9-25:20
+	android:windowSoftInputMode
+		ADDED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:20:13-55
+	android:exported
+		ADDED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:18:13-36
+	android:configChanges
+		ADDED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:19:13-74
+	android:name
+		ADDED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:17:13-41
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:21:13-24:29
+action#android.intent.action.MAIN
+ADDED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:22:17-68
+	android:name
+		ADDED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:22:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:23:17-76
+	android:name
+		ADDED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:23:27-74
+uses-sdk
+INJECTED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml
+INJECTED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml
+INJECTED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml
+INJECTED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml
+		ADDED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml
+		INJECTED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml
+		ADDED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml
+		INJECTED from /root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml

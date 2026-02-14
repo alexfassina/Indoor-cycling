@@ -1,0 +1,64 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.indoorcycling.app"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="26"
+8-->/root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="34" />
+9-->/root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.BLUETOOTH" />
+11-->/root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:5:5-67
+11-->/root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:5:22-65
+12    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+12-->/root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:6:5-73
+12-->/root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:6:22-71
+13    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+13-->/root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:7:5-72
+13-->/root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:7:22-70
+14    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+14-->/root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:8:5-75
+14-->/root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:8:22-73
+15    <uses-permission android:name="android.permission.INTERNET" />
+15-->/root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:9:5-66
+15-->/root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:9:22-64
+16
+17    <application
+17-->/root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:11:5-26:19
+18        android:allowBackup="true"
+18-->/root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:12:9-35
+19        android:debuggable="true"
+20        android:extractNativeLibs="false"
+21        android:label="Indoor Cycling"
+21-->/root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:13:9-39
+22        android:supportsRtl="true"
+22-->/root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:14:9-35
+23        android:theme="@android:style/Theme.Material.Light.NoActionBar" >
+23-->/root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:15:9-72
+24        <activity
+24-->/root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:16:9-25:20
+25            android:name="com.indoorcycling.app.MainActivity"
+25-->/root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:17:13-41
+26            android:configChanges="orientation|keyboardHidden|screenSize"
+26-->/root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:19:13-74
+27            android:exported="true"
+27-->/root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:18:13-36
+28            android:windowSoftInputMode="adjustResize" >
+28-->/root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:20:13-55
+29            <intent-filter>
+29-->/root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:21:13-24:29
+30                <action android:name="android.intent.action.MAIN" />
+30-->/root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:22:17-68
+30-->/root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:22:25-66
+31
+32                <category android:name="android.intent.category.LAUNCHER" />
+32-->/root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:23:17-76
+32-->/root/.openclaw/workspace/android/app/src/main/AndroidManifest.xml:23:27-74
+33            </intent-filter>
+34        </activity>
+35    </application>
+36
+37</manifest>

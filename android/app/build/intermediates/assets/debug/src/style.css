@@ -1,0 +1,247 @@
+:root {
+  --bg-primary: #0f0f1a;
+  --bg-card: #1a1a2e;
+  --bg-metric: #252542;
+  --accent-power: #ff6b6b;
+  --accent-cadence: #4ecdc4;
+  --accent-success: #45b7d1;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0b0;
+  --border-radius: 16px;
+  --spacing: 16px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  padding: var(--spacing);
+}
+
+#app {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+header {
+  text-align: center;
+  margin-bottom: calc(var(--spacing) * 2);
+}
+
+header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.card {
+  background: var(--bg-card);
+  border-radius: var(--border-radius);
+  padding: var(--spacing);
+  margin-bottom: var(--spacing);
+}
+
+/* Connection Status */
+#connection {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing);
+}
+
+.status-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--text-secondary);
+}
+
+.status-indicator.connected {
+  background: #4ade80;
+  box-shadow: 0 0 10px #4ade80;
+}
+
+.status-indicator.searching {
+  background: #fbbf24;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+#status-text {
+  flex: 1;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+#connect-btn {
+  background: var(--accent-success);
+  color: var(--bg-primary);
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#connect-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Metrics */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing);
+  margin-bottom: var(--spacing);
+}
+
+.metric-card {
+  background: var(--bg-metric);
+  border-radius: var(--border-radius);
+  padding: calc(var(--spacing) * 1.5);
+  text-align: center;
+}
+
+.metric-card.power {
+  border: 2px solid var(--accent-power);
+}
+
+.metric-card.cadence {
+  border: 2px solid var(--accent-cadence);
+}
+
+.metric-label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.metric-value {
+  display: block;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.metric-card.power .metric-value {
+  color: var(--accent-power);
+}
+
+.metric-card.cadence .metric-value {
+  color: var(--accent-cadence);
+}
+
+.metric-unit {
+  display: block;
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+/* Session */
+.session-stats {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: var(--spacing);
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.stat-value {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.session-buttons {
+  display: flex;
+  gap: var(--spacing);
+}
+
+.primary-btn, .secondary-btn {
+  flex: 1;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.primary-btn {
+  background: #4ade80;
+  color: var(--bg-primary);
+}
+
+.primary-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.secondary-btn {
+  background: var(--bg-metric);
+  color: var(--text-primary);
+  border: 1px solid var(--text-secondary);
+}
+
+/* History */
+#history h2 {
+  font-size: 1.1rem;
+  margin-bottom: var(--spacing);
+}
+
+#session-list {
+  list-style: none;
+}
+
+#session-list li {
+  padding: 12px;
+  border-bottom: 1px solid var(--bg-metric);
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+
+#session-list li:last-child {
+  border-bottom: none;
+}
+
+.session-date {
+  color: var(--text-secondary);
+}
+
+.session-summary {
+  display: flex;
+  gap: 12px;
+}
+
+.session-summary span {
+  color: var(--accent-power);
+}
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  color: var(--text-secondary);
+  padding: var(--spacing);
+  font-style: italic;
+}
