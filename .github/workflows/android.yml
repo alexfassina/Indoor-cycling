@@ -25,14 +25,14 @@ jobs:
       - name: Install Capacitor
         run: npm install @capacitor/cli @capacitor/core @capacitor/android
         
-      - name: Sync Android
-        run: npx cap sync android
+      - name: Sync Android (verbose)
+        run: npx cap sync android --verbose
         
       - name: Build Android APK
         run: |
           cd android
           chmod +x gradlew
-          ./gradlew assembleDebug
+          ./gradlew assembleDebug --stacktrace
           
       - name: Upload APK
         uses: actions/upload-artifact@v4
