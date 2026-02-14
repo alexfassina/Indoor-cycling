@@ -1,0 +1,20 @@
+node_modules/
+dist/
+android/
+.idea/
+*.log
+.DS_Store
+
+# OpenClaw internal (don't commit)
+.clawhub/
+memory/
+skills/
+AGENTS.md
+BOOTSTRAP.md
+CLAWI.md
+HEARTBEAT.md
+IDENTITY.md
+MEMORY.md
+SOUL.md
+TOOLS.md
+USER.md
