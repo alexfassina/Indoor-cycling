@@ -1,0 +1,106 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Bible Tennis Tactique - Jouer le meilleur tennis de ta vie">
+  <div class="hero">
+    <h1>🎾 Tennis Tactique</h1>
+    <p>La bible de la progression continue au tennis</p>
+    <p style="margin-top: 1rem; font-size: 1rem;">Par Alexis Santin</p>
+  </div>
+  
+  <div class="toc">
+    <h2>📚 Table des Matières</h2>
+    <div class="toc-grid">
+      <a href="/progression" class="toc-card">
+        <h3>1. Progression Rapide</h3>
+        <p>Programme d'entraînement, les 4 stratégies d'entreprise, méthode des 5 Pourquoi</p>
+      </a>
+      <a href="/tactique" class="toc-card">
+        <h3>2. La Tactique</h3>
+        <p>Cartographie 3D, stratégies de match, profils de joueurs et comment les battre</p>
+      </a>
+      <a href="/mental" class="toc-card">
+        <h3>3. Le Mental</h3>
+        <p>Gestion des émotions, confiance, présence, quadrants de performance</p>
+      </a>
+      <a href="/physique" class="toc-card">
+        <h3>4. Le Physique</h3>
+        <p>Respiration, posture, récupération, sommeil, conscience corporelle</p>
+      </a>
+    </div>
+  </div>
+  
+  <div class="lexique">
+    <h2>📖 Le Lexique Tennis Tactique</h2>
+    
+    <h3>Concepts Clés</h3>
+    <dl>
+      <dt class="lexique-term">Le Trône</dt>
+      <dd>L'endroit où vous êtes le plus à l'aise sur le terrain. Pour les serveur-volleyeurs, c'est au filet.</dd>
+      
+      <dt class="lexique-term">La Faille</dt>
+      <dd>Zone qui permet d'obtenir des fautes directes ou des balles faciles. C'est aussi votre zone faible.</dd>
+      
+      <dt class="lexique-term">Bouclier et Épée</dt>
+      <dd>Votre coup faible devient le Bouclier, votre point fort devient l'Épée. Travaillez vos forces.</dd>
+      
+      <dt class="lexique-term">Jauge de Pression (JP)</dt>
+      <dd>À chaque coup, vous faites monter la pression de votre adversaire.</dd>
+      
+      <dt class="lexique-term">Point de Rupture (PR)</dt>
+      <dd>Le moment où un joueur va craquer - faire une faute ou jouer court.</dd>
+      
+      <dt class="lexique-term">Seuil de Régularité (SR)</dt>
+      <dd>Nombre d'échanges après lequel un joueur se dit "je dois tenter quelque chose".</dd>
+      
+      <dt class="lexique-term">Zone d'Opportunité (ZO)</dt>
+      <dd>Zone au milieu du terrain (profondeur 3) où la plupart des joueurs font des fautes.</dd>
+      
+      <dt class="lexique-term">Principe DNA</dt>
+      <dd>Défense → Neutre → Attaque. Respectez toujours cet ordre.</dd>
+    </dl>
+  </div>
+  
+  <div style="margin-top: 3rem; text-align: center;">
+    <h2>Prêt à progresser ?</h2>
+    <p>Rejoignez le Club Tennis Tactique pour accéder à la formation gratuite.</p>
+    <a href="https://www.tennis-tactique.com/bonus" target="_blank" class="cta-button">
+      Télécharger mon bonus
+    </a>
+  </div>
+</Layout>
+
+<style>
+  dt {
+    font-weight: 600;
+    color: #00a86b;
+    margin-top: 1rem;
+  }
+  
+  dd {
+    margin-left: 0;
+    margin-bottom: 0.5rem;
+    color: #666;
+  }
+  
+  dl {
+    margin-top: 1rem;
+  }
+  
+  .cta-button {
+    display: inline-block;
+    background: #00a86b;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    transition: background 0.2s;
+  }
+  
+  .cta-button:hover {
+    background: #008f5b;
+    text-decoration: none;
+  }
+</style>
