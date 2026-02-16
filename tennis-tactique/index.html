@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tennis Tactique - La Bible de la Progression</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #00C853;
+      --primary-dark: #009624;
+      --accent: #FF6D00;
+      --dark: #1a1a2e;
+      --dark-light: #16213e;
+      --gray: #64748b;
+      --light: #f8fafc;
+      --white: #ffffff;
+      --shadow: 0 4px 20px rgba(0,0,0,0.08);
+      --shadow-hover: 0 8px 30px rgba(0,0,0,0.12);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      line-height: 1.7;
+      color: var(--dark);
+      background: var(--light);
+    }
+    
+    /* Header */
+    header {
+      background: var(--dark);
+      padding: 1.5rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow);
+    }
+    
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: white;
+      font-weight: 700;
+      font-size: 1.4rem;
+      text-decoration: none;
+    }
+    
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+    }
+    
+    nav {
+      display: flex;
+      gap: 2rem;
+    }
+    
+    nav a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    
+    nav a:hover {
+      color: var(--primary);
+    }
+    
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--dark) 0%, var(--dark-light) 50%, #1a365d 100%);
+      color: white;
+      padding: 5rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    
+    .hero p {
+      font-size: 1.3rem;
+      opacity: 0.9;
+      margin-bottom: 2rem;
+    }
+    
+    .hero-author {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      font-size: 1.1rem;
+      opacity: 0.8;
+    }
+    
+    /* Main */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+    
+    /* TOC */
+    .toc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+    
+    .toc-card {
+      background: var(--white);
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    
+    .toc-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--primary);
+    }
+    
+    .toc-number {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+    
+    .toc-card h2 {
+      font-size: 1.4rem;
+      margin-bottom: 0.75rem;
+      color: var(--dark);
+    }
+    
+    .toc-card p {
+      color: var(--gray);
+      font-size: 0.95rem;
+      margin: 0;
+    }
+    
+    /* Sections */
+    .section {
+      background: var(--white);
+      border-radius: 1rem;
+      padding: 3rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow);
+    }
+    
+    .section h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .section h1 .icon {
+      font-size: 2rem;
+    }
+    
+    .section h2 {
+      font-size: 1.6rem;
+      margin: 2.5rem 0 1rem;
+      color: var(--dark);
+      border-bottom: 3px solid var(--primary);
+      padding-bottom: 0.5rem;
+      display: inline-block;
+    }
+    
+    .section h3 {
+      font-size: 1.25rem;
+      margin: 2rem 0 0.75rem;
+      color: var(--dark-light);
+    }
+    
+    .section p {
+      margin-bottom: 1rem;
+      color: #475569;
+    }
+    
+    .section ul, .section ol {
+      margin: 1rem 0;
+      padding-left: 1.5rem;
+    }
+    
+    .section li {
+      margin-bottom: 0.5rem;
+      color: #475569;
+    }
+    
+    /* Concepts */
+    .concept {
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+      border-left: 4px solid var(--primary);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 0 0.75rem 0.75rem 0;
+    }
+    
+    .concept strong {
+      color: var(--primary-dark);
+    }
+    
+    .definition {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    
+    .definition dt {
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 0.5rem;
+    }
+    
+    .definition dd {
+      color: #475569;
+      margin: 0;
+    }
+    
+    /* Profiles */
+    .profiles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    
+    .profile {
+      background: var(--light);
+      padding: 1.25rem;
+      border-radius: 0.75rem;
+      border-left: 4px solid var(--accent);
+    }
+    
+    .profile h4 {
+      color: var(--dark);
+      margin-bottom: 0.5rem;
+    }
+    
+    .profile p {
+      font-size: 0.9rem;
+      margin: 0;
+    }
+    
+    /* Quote */
+    blockquote {
+      background: linear-gradient(135deg, var(--dark) 0%, var(--dark-light) 100%);
+      color: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      margin: 2rem 0;
+      font-size: 1.2rem;
+      font-style: italic;
+      position: relative;
+    }
+    
+    blockquote::before {
+      content: '"';
+      font-size: 5rem;
+      position: absolute;
+      top: -1rem;
+      left: 1rem;
+      opacity: 0.3;
+      font-family: Georgia, serif;
+    }
+    
+    /* Lexique */
+    .lexique-list {
+      display: grid;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    
+    .lexique-item {
+      background: var(--light);
+      padding: 1.25rem;
+      border-radius: 0.75rem;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 1rem;
+      align-items: start;
+    }
+    
+    .lexique-term {
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+    
+    .lexique-desc {
+      color: #475569;
+      font-size: 0.95rem;
+    }
+    
+    /* CTA */
+    .cta {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      padding: 3rem;
+      border-radius: 1rem;
+      text-align: center;
+      margin: 3rem 0;
+    }
+    
+    .cta h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      border: none;
+      padding: 0;
+    }
+    
+    .cta p {
+      opacity: 0.9;
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+    
+    .cta a {
+      display: inline-block;
+      background: white;
+      color: var(--primary);
+      padding: 1rem 2rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .cta a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 3rem 2rem;
+      margin-top: 4rem;
+    }
+    
+    footer p {
+      margin: 0;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+      }
+      
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      .section {
+        padding: 1.5rem;
+      }
+      
+      .lexique-item {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    /* Smooth scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <a href="/" class="logo">
+        <span class="logo-icon">🎾</span>
+        Tennis Tactique
+      </a>
+      <nav>
+        <a href="#progression">Progression</a>
+        <a href="#tactique">Tactique</a>
+        <a href="#mental">Mental</a>
+        <a href="#physique">Physique</a>
+        <a href="#lexique">Lexique</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Jouer le meilleur tennis de ta vie</h1>
+      <p>La bible de la progression continue au tennis</p>
+      <div class="hero-author">
+        <span>Par Alexis Santin</span>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <div class="toc-grid">
+      <a href="#progression" class="toc-card">
+        <div class="toc-number">Partie 1</div>
+        <h2>🚀 Progression Rapide</h2>
+        <p>Programme d'entraînement, stratégies d'entreprise, méthode des 5 Pourquoi</p>
+      </a>
+      <a href="#tactique" class="toc-card">
+        <div class="toc-number">Partie 2</div>
+        <h2>♟️ La Tactique</h2>
+        <p>Cartographie 3D, stratégies de match, profils de joueurs</p>
+      </a>
+      <a href="#mental" class="toc-card">
+        <div class="toc-number">Partie 3</div>
+        <h2>🧠 Le Mental</h2>
+        <p>Gestion des émotions, confiance, présence, quadrants de performance</p>
+      </a>
+      <a href="#physique" class="toc-card">
+        <div class="toc-number">Partie 4</div>
+        <h2>💪 Le Physique</h2>
+        <p>Respiration, posture, récupération, sommeil, conscience corporelle</p>
+      </a>
+    </div>
+
+    <!-- PARTIE 1: PROGRESSION RAPIDE -->
+    <section id="progression" class="section">
+      <h1><span class="icon">🚀</span> Partie 1: Progression Rapide</h1>
+      
+      <h2>Les 4 Stratégies d'Entreprise</h2>
+      
+      <h3>#1 - Ta Vision</h3>
+      <p>Quel est ton objectif final ? Définis clairement où tu veux aller. Sans vision, pas de progression possible.</p>
+      
+      <h3>#2 - La Théorie des Contraintes</h3>
+      <p>Par où commencer ta progression ? Identifie le maillon faible de ta chaîne. Travaille en priorité ce qui te freine le plus.</p>
+      
+      <h3>#3 - La Règle des 80/20</h3>
+      <p>20% des efforts donnent 80% des résultats. Identifie les 20% qui font la différence et concentre-toi dessus.</p>
+      
+      <h3>#4 - La Méthode des 5 Pourquoi</h3>
+      <p>Trouve l'élément clé pour progresser en creusant jusqu'à la racine du problème. Pourquoi ? Pourquoi ? Pourquoi ?</p>
+      
+      <h2>Les 4 Aspects du Tennis</h2>
+      <ul>
+        <li><strong>Technique</strong> - Comment tu frappes la balle</li>
+        <li><strong>Tactique</strong> - Comment tu gagnes les points</li>
+        <li><strong>Physique</strong> - Ton corps et ton endurance</li>
+        <li><strong>Mental</strong> - Ta tête et tes émotions</li>
+      </ul>
+      
+      <blockquote>
+        "La folie, c'est de faire toujours la même chose et de s'attendre à un résultat différent." - Albert Einstein
+      </blockquote>
+      
+      <h2>Les 2 Types de Joueurs</h2>
+      
+      <h3>Le Stratège</h3>
+      <p>Celui qui joue avec un plan, qui analyse et s'adapte à son adversaire.</p>
+      
+      <h3>Le Zombie</h3>
+      <p>Celui qui joue en pilote automatique sans réfléchir. Qui fait toujours la même chose.</p>
+      
+      <h2>Augmenter son Seuil de Régularité</h2>
+      <p>Deviens et reste au moins 3e série à vie en augmentant ta patience dans les échanges. Le Seuil de Régularité (SR) c'est le nombre d'échanges après lequel tu te dis "je dois tenter quelque chose".</p>
+      
+      <h2>Le Principe DNA</h2>
+      <div class="concept">
+        <strong>D</strong>éfense → <strong>N</strong>eutre → <strong>A</strong>ttaque<br><br>
+        Respecte toujours cet ordre. Ne passe jamais de Défense à Attaque directement. Ce principe permet d'augmenter considérablement ton SR.
+      </div>
+      
+      <h2>Le Jeu de Jambes</h2>
+      <p>Bouge comme Federer, Nadal et Djokovic avec les appuis dynamiques :</p>
+      <ul>
+        <li>Appui dynamique dans la foulées</li>
+        <li>Sursaut</li>
+        <li>Pas de pivot</li>
+      </ul>
+      
+      <h2>Les ICP - Indicateurs Clés de Performance</h2>
+      <p>Note de 1 à 10 :</p>
+      <ul>
+        <li>Niveau de Relâchement</li>
+        <li>Niveau d'Intensité</li>
+        <li>Niveau d'Engagement</li>
+        <li>Niveau de Rigueur</li>
+        <li>Niveau de Sérénité</li>
+      </ul>
+    </section>
+
+    <!-- PARTIE 2: LA TACTIQUE -->
+    <section id="tactique" class="section">
+      <h1><span class="icon">♟️</span> Partie 2: La Tactique</h1>
+      
+      <h2>La Cartographie 3D</h2>
+      <p>Quadrillage du terrain selon 3 dimensions pour gagner dans la 4ème dimension : le temps.</p>
+      
+      <h3>La Profondeur (1 à 4)</h3>
+      <ul>
+        <li>1 = fond du court</li>
+        <li>2 = milieu du terrain</li>
+        <li>3 = zone d'opportunité</li>
+        <li>4 = près du filet</li>
+      </ul>
+      
+      <h3>La Largeur (A à C)</h3>
+      <ul>
+        <li>A = couloir extérieur</li>
+        <li>B = milieu</li>
+        <li>C = couloir intérieur</li>
+      </ul>
+      
+      <h3>La Hauteur (1 à 4)</h3>
+      <ul>
+        <li>1 = lob haut</li>
+        <li>2 = balle haute</li>
+        <li>3 = balle mi-haute</li>
+        <li>4 = balle rasante</li>
+      </ul>
+      
+      <h2>Les Stratégies de Match</h2>
+      
+      <h3>1. Débordement Tactique</h3>
+      <p>Fais plier ton adversaire en variant les coups et les zones.</p>
+      
+      <h3>2. L'Essuie-Glace</h3>
+      <p>Fais courir ton adversaire d'un côté à l'autre jusqu'à ce qu'il craque.</p>
+      
+      <h3>3. Le Marteau-Pilon</h3>
+      <p>Frappe fort et directo dans le Point de Rupture pour conclure.</p>
+      
+      <h3>4. L'Accordéon Vertical</h3>
+      <p>Casse le rythme : alterne balles hautes et basses pour provoquer des fautes.</p>
+      
+      <h3>5. Gagner son Service</h3>
+      <p>L'enchaînement "Gauche-Droite" de la boxe anglaise.</p>
+      
+      <h2>Profils de Joueurs et Comment les Battre</h2>
+      
+      <div class="profiles-grid">
+        <div class="profile">
+          <h4>Le Vieux Briscard</h4>
+          <p>Technique, expérience. Contre : patience et variation.</p>
+        </div>
+        <div class="profile">
+          <h4>Le Rameur</h4>
+          <p>Ramène tout, attend l'erreur. Contre : méthode du Rouleau-Compresseur.</p>
+        </div>
+        <div class="profile">
+          <h4>Le Serveur-Volleyeur</h4>
+          <p>Attaque au filet. Contre : attaque sur les lignes, lob.</p>
+        </div>
+        <div class="profile">
+          <h4>Le Contre-Attaquant</h4>
+          <p>Nadal, attend et contre-attaque. Contre : intensité et agressivité.</p>
+        </div>
+        <div class="profile">
+          <h4>Le Cogneur</h4>
+          <p>Frappe fort mais prévisible. Contre : stratégie du moustique.</p>
+        </div>
+        <div class="profile">
+          <h4>Le Showman</h4>
+          <p>Monfils, Tsonga, Gasquet. Le style sinon rien.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARTIE 3: LE MENTAL -->
+    <section id="mental" class="section">
+      <h1><span class="icon">🧠</span> Partie 3: Le Mental</h1>
+      
+      <h2>Les 9 Principes du Mental Invincible</h2>
+      
+      <h3>1. Ne jamais penser à la technique en match</h3>
+      <p>La technique s'entraîne, ne se pense pas. Laisse ton corps parler.</p>
+      
+      <h3>2. Faire douter l'adversaire</h3>
+      <p>Ne pas jouer en réaction, rester impassible. Sois imprévisible.</p>
+      
+      <h3>3. Objectif de Résultat vs Objectif de Comportement</h3>
+      <p>Concentre-toi sur ton plan de jeu, pas sur le score. Contrôle ce que tu peux contrôler.</p>
+      
+      <h3>4. Crée ta "Réelle Victoire"</h3>
+      <p>Trouve ce qui est plus important que de gagner. C'est ce qui te fera gagner.</p>
+      
+      <h3>5. Le Quadrant de Performance</h3>
+      <p>Grille de lecture du tennis. Analyse pourquoi tu gagnes ou perds.</p>
+      
+      <h3>6. Ton niveau d'intensité optimal</h3>
+      <p>Trouve ton intensité de 0 à 10. Chaque joueur a un niveau optimal différent.</p>
+      
+      <h3>7. Jouer aussi bien en match qu'à l'entraînement</h3>
+      <p>Entraîne-toi comme tu joues. Reproduis les conditions de match.</p>
+      
+      <h3>8. Joue comme si tu allais mourir demain</h3>
+      <p>Donne tout ce que tu as. Sans retenu, sans peur.</p>
+      
+      <h3>9. Te concentrer sur ce que tu contrôles</h3>
+      <p>Lâche ce qui ne dépend pas de toi. Le vent, le score, l'arbitre...</p>
+      
+      <h2>Que faire entre les points ?</h2>
+      <ul>
+        <li>Respire profondément</li>
+        <li>Visualise ton prochain coup</li>
+        <li>Lâche le point précédent</li>
+        <li>Répète ta routine</li>
+      </ul>
+      
+      <h2>État d'Esprit Fixe vs. de Développement</h2>
+      <div class="definition">
+        <dl>
+          <dt>État d'Esprit Fixe</dt>
+          <dd>"Je suis nul", "Je n'y arriverai pas", "Je suis né comme ça"</dd>
+        </dl>
+      </div>
+      <div class="definition">
+        <dl>
+          <dt>État d'Esprit de Développement</dt>
+          <dd>"Comment puis-je m'améliorer ?", "Que puis-je apprendre ?"</dd>
+        </dl>
+      </div>
+      
+      <h2>La Forteresse Intérieure</h2>
+      <p>Protège ta Vraie Victoire des attaques de pensées parasites. Ton mental est constamment assiégé par les pensées négatives.</p>
+      
+      <h2>Le Relâchement Total</h2>
+      <p>Joue par Amour, pas par Peur. Libère-toi de tes traumas pour libérer ton tennis.</p>
+      
+      <h2>La Méditation de la Victoire</h2>
+      <p>Rencontre ta Résistance Intérieure et comprends-la. Elle a une raison d'exister.</p>
+    </section>
+
+    <!-- PARTIE 4: LE PHYSIQUE -->
+    <section id="physique" class="section">
+      <h1><span class="icon">💪</span> Partie 4: Le Physique</h1>
+      
+      <h2>Comment respirer efficacement au tennis ?</h2>
+      <p>La respiration est la base de toute performance. Une bonne respiration permet :</p>
+      <ul>
+        <li>De gérer le stress</li>
+        <li>De maintenir ton énergie</li>
+        <li>De récupérer plus vite entre les points</li>
+      </ul>
+      
+      <h2>La Cartographie Émotionnelle</h2>
+      <p>Comment tes émotions affectent ton corps et ta respiration sur le terrain. Apprends à lire les signaux.</p>
+      
+      <h2>La Suspension Passive</h2>
+      <p>Pour le dos et pour avoir un meilleur service :</p>
+      <ul>
+        <li>Étirements matinaux</li>
+        <li>Soufflet dorsal</li>
+        <li>Posture de détente</li>
+      </ul>
+      
+      <h2>Tu joues crispé ? Relâche ton poignet</h2>
+      <p>La crispation te fait perdre puissance et précision. Le relâchement est la clé de la puissance.</p>
+      
+      <h2>Développer la Conscience Corporelle</h2>
+      <p>Améliore ta posture et élimine le stress par la conscience de ton corps. Sois présent dans ton corps.</p>
+      
+      <h2>Comment ne plus penser au tennis ?</h2>
+      <p>Laisse le tennis sur le terrain. Détache-toi du jeu en dehors des sessions.</p>
+      
+      <h2>Super Sommeil et Récupération</h2>
+      <ul>
+        <li>7-9 heures de sommeil</li>
+        <li>Routine du soir</li>
+        <li>Hydratation</li>
+        <li>Étirements avant dormir</li>
+      </ul>
+      
+      <h2>Un meilleur physique grâce à la gratitude</h2>
+      <p>La gratitude améliore ta récupération et ta motivation. Sois reconnaissant pour ton corps.</p>
+    </section>
+
+    <!-- LEXIQUE -->
+    <section id="lexique" class="section">
+      <h1><span class="icon">📖</span> Le Lexique Tennis Tactique</h1>
+      
+      <div class="lexique-list">
+        <div class="lexique-item">
+          <div class="lexique-term">Le Trône</div>
+          <div class="lexique-desc">L'endroit où vous êtes le plus à l'aise. Pour un serveur-volleyeur, c'est au filet. Pour un fond de court, c'est au milieu.</div>
+        </div>
+        <div class="lexique-item">
+          <div class="lexique-term">La Faille</div>
+          <div class="lexique-desc">Zone qui permet d'obtenir des fautes directes ou des balles plus faciles. C'est aussi votre zone faible.</div>
+        </div>
+        <div class="lexique-item">
+          <div class="lexique-term">Bouclier</div>
+          <div class="lexique-desc">Votre coup faible. Ne cherchez pas à avoir un revers aussi fort que le coup droit. Faites de votre faibless un bouclier.</div>
+        </div>
+        <div class="lexique-item">
+          <div class="lexique-term">Épée</div>
+          <div class="lexique-desc">Votre point fort. Votre objectif est d'avoir un Bouclier tellement neutralisant qu'il donne envie à votre adversaire de jouer sur votre Épée.</div>
+        </div>
+        <div class="lexique-item">
+          <div class="lexique-term">Jauge de Pression (JP)</div>
+          <div class="lexique-desc">À chaque coup, vous faites monter la pression de votre adversary. Vous pouvez faire monter la JP en le faisant courir, en jouant long, en jouant des zones clés...</div>
+        </div>
+        <div class="lexique-item">
+          <div class="lexique-term">Point de Rupture (PR)</div>
+          <div class="lexique-desc">Le moment où un joueur va craquer - faire une faute ou jouer une balle plus courte. C'est le moment où vous prenez l'avantage.</div>
+        </div>
+        <div class="lexique-item">
+          <div class="lexique-term">Seuil de Régularité (SR)</div>
+          <div class="lexique-desc">Nombre d'échanges après lequel un joueur se dit "je dois tenter quelque chose". Certains ont un SR de 3, d'autres de 10.</div>
+        </div>
+        <div class="lexique-item">
+          <div class="lexique-term">Zone d'Opportunité (ZO)</div>
+          <div class="lexique-desc">Zone au milieu du terrain (profondeur 3) où 99% des joueurs de club font des fautes. C'est la Zone à maîtriser pour passer 2e série.</div>
+        </div>
+        <div class="lexique-item">
+          <div class="lexique-term">Principe DNA</div>
+          <div class="lexique-desc">Défense → Neutre → Attaque. Respectez toujours cet ordre. Ne jamais passer de Défense à Attaque.</div>
+        </div>
+        <div class="lexique-item">
+          <div class="lexique-term">Rouleau-Compresseur</div>
+          <div class="lexique-desc">Méthode permettant de gagner contre les rameurs. Joue plus fort, plus profond, plus agresif.</div>
+        </div>
+        <div class="lexique-item">
+          <div class="lexique-term">Pilote Automatique</div>
+          <div class="lexique-desc">Tendance des joueurs à jouer sans réfléchir. Le mode PA des stratèges est de jouer son plan sans y penser.</div>
+        </div>
+        <div class="lexique-item">
+          <div class="lexique-term">Vrai Niveau</div>
+          <div class="lexique-desc">Le niveau réel auquel vous jouez. L'enjeu, les pensées parasites vous empêchent souvent de jouer votre Vrai Niveau.</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="cta">
+      <h2>Prêt à progresser ?</h2>
+      <p>Rejoignez le Club Tennis Tactique pour accéder à la formation gratuite.</p>
+      <a href="https://www.tennis-tactique.com/bonus" target="_blank">Télécharger mon bonus</a>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 Tennis Tactique - Par Alexis Santin</p>
+  </footer>
+</body>
+</html>
